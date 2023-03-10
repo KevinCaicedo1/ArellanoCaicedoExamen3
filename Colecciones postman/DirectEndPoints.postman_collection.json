@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "cb322290-59a4-4454-9a23-b6ef00045790",
+		"name": "DirectEndPoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24824212"
+	},
+	"item": [
+		{
+			"name": "Branch-Post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"55555\",\r\n    \"code\":\"GY\",\r\n    \"name\":\"GUAYAQUIL\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8202/api/v1/branches",
+					"host": [
+						"localhost"
+					],
+					"port": "8202",
+					"path": [
+						"api",
+						"v1",
+						"branches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Branch-Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8202/api/v1/branches",
+					"host": [
+						"localhost"
+					],
+					"port": "8202",
+					"path": [
+						"api",
+						"v1",
+						"branches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Interest-Get",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8203/api/v1/interestrates",
+					"host": [
+						"localhost"
+					],
+					"port": "8203",
+					"path": [
+						"api",
+						"v1",
+						"interestrates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Interest",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 4,\r\n        \"name\": \"Tasa de interes 1\",\r\n        \"interestRate\": 0.3,\r\n        \"state\": \"ACT\",\r\n        \"start\": \"2023-07-04\",\r\n        \"end\": \"2024-07-04\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8203/api/v1/interestrates",
+					"host": [
+						"localhost"
+					],
+					"port": "8203",
+					"path": [
+						"api",
+						"v1",
+						"interestrates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account-Get-By-ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8203/api/v1/productsaccounts",
+					"host": [
+						"localhost"
+					],
+					"port": "8203",
+					"path": [
+						"api",
+						"v1",
+						"productsaccounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAll-ProductAccount",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8203/api/v1/productsaccounts",
+					"host": [
+						"localhost"
+					],
+					"port": "8203",
+					"path": [
+						"api",
+						"v1",
+						"productsaccounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create ProductAccount",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"5\",\r\n    \"name\": \"Cuenta de Ahorro\",\r\n    \"description\": \"Cuenta de Ahorro\",\r\n    \"minimunBalance\": 100,\r\n    \"payInterest\": \"Y\",\r\n    \"acceptsChecks\": \"Y\",\r\n    \"state\": \"ACT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8203/api/v1/productsaccounts",
+					"host": [
+						"localhost"
+					],
+					"port": "8203",
+					"path": [
+						"api",
+						"v1",
+						"productsaccounts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

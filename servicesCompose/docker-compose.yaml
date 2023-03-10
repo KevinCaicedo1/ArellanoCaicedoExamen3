@@ -1,0 +1,67 @@
+version: '2.1'
+
+services:
+
+  podDbPostgres:
+    image: 'postgres:latest'
+    container_name: podDbPostgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin123
+      - PGDATA=/var/lib/postgresql/pgdata
+      - POSTGRES_DB=products_accounts
+    ports:
+      - '8200:5432'
+    volumes:
+      - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/db.sql
+    
+  
+  podDbMongo:
+    image: 'mongo:latest'
+    container_name: podDbMongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=admin123
+      - MONGO_INITDB_DATABASE=admin
+    ports:
+      - '8201:27017'
+    volumes:
+      - ./mongo-init/init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    
+
+  podOneCompose:
+    image: 'branch:v0.0.1'
+    container_name: podOneCompose
+    build:
+      context: ./branches
+    depends_on:
+      - podDbMongo
+    environment:
+      - mongo.host=podDbMongo
+      - mongo.port=27017
+      - mongo.database=storage
+      - mongo.user=mongo
+      - mongo.password=admin123
+    ports:
+      - '8202:8102'
+    
+
+  podTwoCompose:
+    image: 'product-account:v0.0.1'
+    container_name: podTwoCompose
+    build:
+      context: ./products-accounts
+    depends_on:
+      - podDbPostgres
+    environment:
+      - spring.datasource.url=jdbc:postgresql://podDbPostgres/products_accounts
+      - spring.datasource.username=postgres
+      - spring.datasource.password=admin123
+    ports:
+      - '8203:8101'
+    
+
+networks:
+    default:
+      name: kong-net
+
